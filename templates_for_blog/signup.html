@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<title>Signup page </title>
+		
+		<link rel='stylesheet' href='/css/bootstrap.min.css'/>
+		<link type='text/css' rel='stylesheet' href='/css/main.css'/>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+	</head>
+	
+	<body>
+		<div class='container'>
+			<header>
+				<a href="/blog">
+					<h1>MS Blog</h1>
+				</a>
+				
+				<form id='navigation' method='post'>
+					<a href="/blog/login">
+						<button type="button" name="login">Login</button>
+					</a>
+				</form>
+			</header>
+			
+			<div class='row'>
+				<div class='col-md-12'>
+					<hr>
+				</div>
+			</div>
+			
+			<div class='col-xs-12 col-sm-12 col-md-12 form'>
+				<form id='add-new-post' method='post'>
+					<label>
+						Username
+						<input type='text' name='username' value = '{{username}}' maxlength="40">
+					</label>
+					
+					<div class='error'>{{user_error}}</div>
+					
+					<label>
+						Password
+						<input type='password' name='password' value = '{{user_password}}'maxlength="50">
+					</label>
+					
+					<label>
+						Confirm Password
+						<input type='password' name='verify' value = '{{user_password_confirmation}}' maxlength="50">
+					</label>
+					<div class='error'>{{params}}</div>
+					
+					<label>
+						Email(optional)
+						<input type='text' name='email' value = '{{user_email}}' maxlength="40">
+					</label>
+					<div class='error'>{{params}}</div>
+					<input type='submit'>
+					
+					
+				</form>
+				
+			</div>
+		</div>
+		
+		<script src='/js/jquery-3.2.1.min.js'></script>
+		<script src='/js/bootstrap.min.js'></script>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+		<title>Blog of Maksym Savin </title>
+		
+		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="/css/main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	</head>
+	
+	<body>
+		<div class="container">
+			<header>
+				<a href="/blog">
+					<h1>MS Blog</h1>
+				</a>
+				
+				<form id='navigation' method='post'>
+					<a href="/blog/logout">
+						<button type="button" name="logout">Logout</button>
+					</a>
+					
+					<a href="/blog">
+						<button type="button" name="home">Home</button>
+					</a>
+				</form>
+			</header>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+			</div>
+				
+			
+			<div class="col-xs-12 col-sm-12 col-md-12 form">
+				<form id="add-new-post" method="post">
+					<label>
+						<div>
+							<h3>Title</h3>
+						</div>
+						<input type="text" name="subject" value="{{subject}}">
+					</label> 
+					
+					<label>
+						<div>
+							<h3>Enter your post</h3>
+						</div>
+						<textarea name="content">{{content}}</textarea>
+					</label>
+					
+					
+					
+					<div class="error">{{error}}</div>
+					<input type="submit">
+				</form>
+			</div>
+		</div>
+		
+		<script src="/js/jquery-3.2.1.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+	</body>
+</html>

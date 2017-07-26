@@ -1,0 +1,16 @@
+.title-logo {
+	width: 40px;
+	height: 40px;
+}
+
+
+.title-super {
+	font-size: 1.8em;
+}
+
+
+.flexible {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
