@@ -3,9 +3,7 @@ UDACITY BLOG PYTHON
 
 This package implements an example of multiuser blog
 created with help of webapp2 framework and Jinja2 library. 
-You can get the files (and learn more about it) at
-
-  https://github.com/Maksym-UA/UdacityBlogPython
+You can see the demo at
 
 SETUP
 =====
