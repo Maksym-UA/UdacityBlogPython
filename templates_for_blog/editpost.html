@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 		<title>Blog of Maksym Savin </title>
 		
 		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="/css/main.css" />
+		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -14,16 +15,19 @@
 				<a href="/blog">
 					<h1>MS Blog</h1>
 				</a>
-				
-				<form id='navigation' method='post'>
-					<a href="/blog/logout">
-						<button type="button" name="logout">Logout</button>
-					</a>
-					
-					<a href="/blog">
-						<button type="button" name="home">Home</button>
-					</a>
-				</form>
+				<div class="col-xs-12 col-sm-12 col-md-12 navigation">
+					{% if user %}
+						<form method='post'>
+							<a id='logout' href="/blog/logout">
+								<button type="button" name="logout">Logout</button>
+							</a>
+							
+							<a id='home' href="/blog">
+								<button type="button" name="logout">Home</button>
+							</a>
+						</form>
+					{% endif %}		
+				</div>
 			</header>
 			
 			<div class="row">
@@ -32,29 +36,28 @@
 				</div>
 			</div>
 
-			<div class="post">
+			<!-- <div class="post">
 				
 				<div class="post-body">post id to edit {{postid}}</div>
-			</div>
+			</div> -->
 			
 			<div class="col-xs-12 col-sm-12 col-md-12 form">
 				<form id="add-new-post" method="post">
-				
-															
 					<label>
 						<div>
 							<h3>Edit your post</h3>
 						</div>
-						<textarea name="content">{{post.content}}</textarea>
+						<textarea rows="5" maxlength="1000" name="content" autofocus>{{content}}</textarea>
 					</label>
-					
-					
-					
+
 					<div class="error">{{error}}</div>
-					<input type="submit">
-					<a href="/blog">
-						<button type="button" name="cancel">Cancel</button>
-					</a>
+					
+					<div class="write-post-buttons">
+						<input type="submit">
+						<a  href="/blog">
+							<button class="cancelbut" type="button" name="cancel">Cancel</button>
+						</a>
+					</div>
 				</form>
 			</div>
 			

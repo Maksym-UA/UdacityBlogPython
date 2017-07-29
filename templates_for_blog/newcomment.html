@@ -25,6 +25,10 @@
 							<a id='home' href="/blog">
 								<button type="button" name="logout">Home</button>
 							</a>
+							
+							<a id='write' href="/blog/newpost">
+								<button type="button" name="newpost">Write post</button>
+							</a>
 						</form>
 					{% endif %}		
 				</div>
@@ -35,30 +39,29 @@
 					<hr>
 				</div>
 			</div>
-				
+			
+			<div class="post">				
+				<div class="title">
+					<div class="post-subject">{{post.subject}}</div>
+					<div class="post-created">{{post.created.strftime("%Y-%m-%d %H:%M:%S")}}</div>
+				</div>
+				<div class="post-body">{{post.content}}</div>
+			</div>
+			
 			<div class="col-xs-12 col-sm-12 col-md-12 form">
-				<form id="add-new-post" method="post">
+				<form id="add-new-post" method="post">									
 					<label>
 						<div>
-							<h3>Title</h3>
+							<h3>Type you comment here</h3>
 						</div>
-						<input type="text" name="subject" value="{{subject}}" autofocus>
-					</label> 
-					
-					<label>
-						<div>
-							<h3>Enter your post</h3>
-						</div>
-						<textarea rows="6" maxlength="1000" name="content">{{content}}</textarea>
+						<textarea rows="4" maxlength="500" name="comment" autofocus>{{comment}}</textarea>
 					</label>
 					
-					
 					<div class="error">{{error}}</div>
-					
 					<div class="write-post-buttons">
 						<input type="submit">
 						<a  href="/blog">
-							<button class="cancelbut" type="button" name="cancel" >Cancel</button>
+							<button class="cancelbut" type="button" name="cancel">Cancel</button>
 						</a>
 					</div>
 				</form>

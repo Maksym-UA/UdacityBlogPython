@@ -7,6 +7,7 @@ body  {
 	font-weight: 300;	
 }
 
+
 header {
 	align-items: center;
 	display: flex;
@@ -14,9 +15,11 @@ header {
 	margin-bottom: 5px;	
 }
 
+
 h1 {
-	margin-bottom: 5px;	
+	margin-bottom: 10px;	
 }
+
 
 a {
 	text-decoration: none;
@@ -30,15 +33,40 @@ hr {
 	margin: 0;
 }
 
+
 a:link, a active, a:hover { 
 	color: #1a1a1a;
 	text-decoration: none;
 }
 
+
 .container {
 	margin: 0px auto;	
 	max-width: 800px;	
 }
+
+
+.navigation {
+	padding: 5px 0px;
+}
+
+
+#logout, #write, #login, #register{
+	display: inline;
+	
+}
+
+
+#write {
+	float: left;
+}
+
+
+#logout, #login, #register {
+	padding-left: 3px;
+	float:right;
+}
+
 
 .newpost + .newpost {
 	margin-top: 20px;
@@ -46,19 +74,15 @@ a:link, a active, a:hover {
 
 
 .post {
-	margin: 45px auto;
+	display: block;
+	margin: 45px auto 15px auto;
 	padding: 10px;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	width: 100%;
 }
 
-
-.post-subject {
-	font-weight: bold;
-}
-
-.post-body {
-	margin-top: 15px;
-	font-size: 17px;
+.title, .post-body{
+	display: block;
 }
 
 
@@ -67,8 +91,13 @@ a:link, a active, a:hover {
 }
 
 
-.post-subject, post-created {
+.post-subject, .post-created, .like-buttons, .number {
 	display: inline;
+}
+
+
+.post-subject {
+	font-weight: bold;
 }
 
 
@@ -78,11 +107,98 @@ a:link, a active, a:hover {
 	color: #808080;
 }
 
+
+.post-body {
+	margin: 15px 0px 5px 0px;
+	font-size: 17px;
+	word-wrap:break-word;
+}
+
+
+.give-likes, .edit-buttons {
+	display: block;
+	margin: 15px 0px 5px 0px;
+	
+}
+
+.like-buttons {
+	float: left;
+}
+
+.likebut > button {
+	margin-right: 3px;
+}
+
+
+.number {
+	display: block;
+	float:right;
+	margin-top: 5px 5px;	
+}
+
+.edit-buttons {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	margin: 0px;	
+}
+
+
+.editbut > button {
+	margin-left: 3px;
+}
+
+
+.comment-post > button {
+	margin-left: 3px;
+}
+
+
+.comment {
+	display: block;
+	margin: 10px 35px; 
+	padding: 15px;
+	-webkit-box-shadow:0px 0px 7px 3px #cccccc inset;
+	-moz-box-shadow:0px 0px 7px 3px #cccccc inset;
+	box-shadow:0px 0px 7px 3px #cccccc inset;
+}
+
+
+.comment-subject, .comment-created {
+	display: inline;
+}
+
+
+.comment-created {
+	float: right;
+	font-size: 12px;
+	color: #808080;
+}
+
+
+.comment-body {
+	margin-top: 10px;
+	font-size: 14px;
+	word-wrap:break-word;
+}
+
+
 .form {
 	margin: 25px auto;
 	padding: 0;
 }
 
+
+.editcomment {
+	display: block;
+	float: right;
+	margin-right: 15px;	
+}
+
+
+.editcomment > button {
+	margin-left: 3px;	
+}
 .error {
 	display: block;
 	font-size: 14px;
@@ -101,24 +217,33 @@ input[type=text], input[type=password] {
 }
 
 
-input[type=submit] {
+input[type=submit], .cancelbut {
 	margin-top: 25px;
 	font-size: 15px;	
 }
 
 textarea {
 	width: 100%;
-	height: 200px;
 	font-size: 15px;
 	font-family: monospace;
 }
 
-button {
+button  {
 	display: inline-block;
 	float: right;
+}
+
+a.newpost {
+	float:right;
 }
 
 
 h2 {
 	margin: 5px 0px 25px 0px;
+}
+
+
+.editpostarea {
+	
+	
 }

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 	<head>
-		<meta charset='utf-8'>
-		<title>Signup page </title>
+		<meta charset="utf-8">
+		<title>Blog of Maksym Savin </title>
 		
-		<link rel='stylesheet' href='/css/bootstrap.min.css'/>
-		<link type='text/css' rel='stylesheet' href='/css/main.css'/>
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
+		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -16,11 +16,13 @@
 					<h1>MS Blog</h1>
 				</a>
 				
-				<form id='navigation' method='post'>
-					<a href="/blog/login">
-						<button type="button" name="login">Login</button>
-					</a>
-				</form>
+				<div class="col-xs-12 col-sm-12 col-md-12 navigation">				
+					<form method='post'>
+						<a href="/blog/login">
+							<button type="button" name="login">Login</button>
+						</a>
+					</form>
+				</div>
 			</header>
 			
 			<div class='row'>
@@ -54,11 +56,8 @@
 						<input type='text' name='email' value = '{{user_email}}' maxlength="40">
 					</label>
 					<div class='error'>{{params}}</div>
-					<input type='submit'>
-					
-					
-				</form>
-				
+					<input type='submit'>					
+				</form>				
 			</div>
 		</div>
 		

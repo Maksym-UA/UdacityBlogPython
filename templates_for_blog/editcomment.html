@@ -15,6 +15,7 @@
 				<a href="/blog">
 					<h1>MS Blog</h1>
 				</a>
+				
 				<div class="col-xs-12 col-sm-12 col-md-12 navigation">
 					{% if user %}
 						<form method='post'>
@@ -35,34 +36,31 @@
 					<hr>
 				</div>
 			</div>
+
+			<!-- <div class="post">
 				
+				<div class="post-body">post id to edit {{postid}}</div>
+			</div> -->
+			
 			<div class="col-xs-12 col-sm-12 col-md-12 form">
 				<form id="add-new-post" method="post">
 					<label>
 						<div>
-							<h3>Title</h3>
+							<h3>Edit your comment</h3>
 						</div>
-						<input type="text" name="subject" value="{{subject}}" autofocus>
-					</label> 
-					
-					<label>
-						<div>
-							<h3>Enter your post</h3>
-						</div>
-						<textarea rows="6" maxlength="1000" name="content">{{content}}</textarea>
+						<textarea rows="4" maxlength="500" name="comment_text" autofocus>{{comment_text}}</textarea>
 					</label>
-					
-					
-					<div class="error">{{error}}</div>
-					
+
+					<div class="error"><h4>{{error}}</h4></div>
 					<div class="write-post-buttons">
 						<input type="submit">
 						<a  href="/blog">
-							<button class="cancelbut" type="button" name="cancel" >Cancel</button>
+							<button class="cancelbut" type="button" name="cancel">Cancel</button>
 						</a>
 					</div>
 				</form>
 			</div>
+			
 		</div>
 		
 		<script src="/js/jquery-3.2.1.min.js"></script>

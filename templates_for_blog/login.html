@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Login page </title>
+		<title>Blog of Maksym Savin </title>
 		
 		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
 		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
@@ -16,13 +16,13 @@
 					<h1>MS Blog</h1>
 				</a>
 				
-				
-				<form id='navigation' method='post'>
-												
-						<a href="/blog/signup">
+				<div class="col-xs-12 col-sm-12 col-md-12 navigation">
+					<form method='post'>													
+						<a id='register' href="/blog/signup">
 							<button type="button" name="register">Register</button>
 						</a>
-				</form>
+					</form>
+				</div>	
 			</header>
 			
 			<div class="row">
@@ -31,8 +31,6 @@
 				</div>
 			</div>
 			
-			
-
 			<div class='col-xs-12 col-sm-12 col-md-12 form'>
 				<form id='add-new-post' method='post'>
 					<label>
@@ -44,17 +42,10 @@
 						Password
 						<input type='password' name='password' value = '{{user_password}}'maxlength="50">
 					</label>
-					<div class='error'>{{verify_error}}</div>
-					
+					<div class='error'>{{verify_error}}</div>				
 					
 					<input type='submit'>
-					
-					
-					
-					
-					
-				</form>
-				
+				</form>				
 			</div>
 		</div>
 		
