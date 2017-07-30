@@ -4,6 +4,7 @@ UDACITY BLOG PYTHON
 This package implements an example of multiuser blog
 created with help of webapp2 framework and Jinja2 library. 
 You can see the demo at
+https://mspythonblog.appspot.com/
 
 SETUP
 =====
