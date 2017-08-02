@@ -1,56 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Blog of Maksym Savin </title>
-		
-		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	</head>
-	
-	<body>
-		<div class="container">
-			<header>
-				<a href="/blog">
-					<h1>MS Blog</h1>
-				</a>
-				<div class="col-xs-12 col-sm-12 col-md-12 navigation">
-					{% if user %}
-						<form method='post'>
-							<a id='logout' href="/blog/logout">
-								<button type="button" name="logout">Logout</button>
-							</a>
-							
-							<a id='home' href="/blog">
-								<button type="button" name="logout">Home</button>
-							</a>
-							
-							<a id='write' href="/blog/newpost">
-								<button type="button" name="newpost">Write post</button>
-							</a>
-						</form>
-					{% endif %}		
-				</div>
-			</header>
-			
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
+{% extends "index.html" %}
 
-			<div class="post">
-				<h2>You added</h2>
-				<div class="title">
-					<div class="post-subject">{{post.subject}}</div>
-					<div class="post-created">{{post.created.strftime("%Y-%m-%d %H:%M:%S")}}</div>
-				</div>
-				<div class="post-body">{{post.content}}</div>
-			</div>
+{% block header %}
+    {{ super() }}
+    {% if user %}
+		<form method='post'>			
+			<a id='home' href="/blog">
+				<button type="button" name="logout">Home</button>
+			</a>			
+		</form>
+	{% endif %}		
+{% endblock %}
+
+{% block content %}
+    <div class="post">
+		<h2>You added</h2>
+		<div class="title">
+			<div class="post-subject">{{post.subject}}</div>
+			<div class="post-created">{{post.created.strftime("%Y-%m-%d %H:%M:%S")}}</div>
 		</div>
-		
-		<script src="/js/jquery-3.2.1.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-	</body>
-</html>
+		<div class="post-body">{{post.content}}</div>
+		<div class="post-body">{{author}}</div
+	</div>
+{% endblock %}

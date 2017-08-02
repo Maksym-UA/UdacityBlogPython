@@ -1,69 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Blog of Maksym Savin </title>
-		
-		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	</head>
-	
-	<body>
-		<div class="container">
-			<header>
-				<a href="/blog">
-					<h1>MS Blog</h1>
-				</a>
-				
-				<div class="col-xs-12 col-sm-12 col-md-12 navigation">
-					{% if user %}
-						<form method='post'>
-							<a id='logout' href="/blog/logout">
-								<button type="button" name="logout">Logout</button>
-							</a>
-							
-							<a id='home' href="/blog">
-								<button type="button" name="logout">Home</button>
-							</a>
-						</form>
-					{% endif %}		
-				</div>
-			</header>
-			
-			<div class="row">
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
+{% extends "index.html" %}
 
-			<!-- <div class="post">
-				
-				<div class="post-body">post id to edit {{postid}}</div>
-			</div> -->
-			
-			<div class="col-xs-12 col-sm-12 col-md-12 form">
-				<form id="add-new-post" method="post">
-					<label>
-						<div>
-							<h3>Edit your comment</h3>
-						</div>
-						<textarea rows="4" maxlength="500" name="comment_text" autofocus>{{comment_text}}</textarea>
-					</label>
+{% block header %}
+    {{ super() }}
+    {% if user %}
+		<form method='post'>			
+			<a id='home' href="/blog">
+				<button type="button" name="logout">Home</button>
+			</a>			
+		</form>
+	{% endif %}		
+{% endblock %}
 
-					<div class="error"><h4>{{error}}</h4></div>
-					<div class="write-post-buttons">
-						<input type="submit">
-						<a  href="/blog">
-							<button class="cancelbut" type="button" name="cancel">Cancel</button>
-						</a>
-					</div>
-				</form>
-			</div>
-			
+{% block content %}
+    <form id="add-new-post" method="post">
+		<label>				
+			<h3>Edit your comment</h3>						
+			<textarea rows="4" maxlength="500" name="comment_text" autofocus>{{comment_text}}</textarea>
+		</label>
+
+		<div class="error"><h4>{{error}}</h4></div>
+		<div class="write-post-buttons">
+			<input type="submit">
+			<a  href="/blog">
+				<button class="cancelbut" type="button" name="cancel">Cancel</button>
+			</a>
 		</div>
-		
-		<script src="/js/jquery-3.2.1.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-	</body>
-</html>
+	</form>
+{% endblock %}
+

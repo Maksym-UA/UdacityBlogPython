@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 	<head>
-		<meta charset="utf-8">
+		<meta charset='utf-8'>
 		<title>Blog of Maksym Savin </title>
 		
-		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link rel='stylesheet' href='/css/bootstrap.min.css'/>
+		<link type='text/css' rel='stylesheet' href='/css/main.css'/>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'>
 	</head>
 	
 	<body>
 		<div class='container'>
 			<header>
-				<a href="/blog">
+				<a href='/blog'>
 					<h1>MS Blog</h1>
 				</a>
 				
-				<div class="col-xs-12 col-sm-12 col-md-12 navigation">				
+				<div class='col-xs-12 col-sm-12 col-md-12 navigation'>				
 					<form method='post'>
-						<a href="/blog/login">
-							<button type="button" name="login">Login</button>
+						<a href='/blog/login'>
+							<button type='button' name='login'>Login</button>
 						</a>
 					</form>
 				</div>
@@ -35,27 +35,28 @@
 				<form id='add-new-post' method='post'>
 					<label>
 						Username
-						<input type='text' name='username' value = '{{username}}' maxlength="40">
+						<input type='text' name='username' value = '{{username}}' >
 					</label>
 					
-					<div class='error'>{{user_error}}</div>
+					<div class='error'>{{error_username}}</div>
 					
 					<label>
 						Password
-						<input type='password' name='password' value = '{{user_password}}'maxlength="50">
+						<input type='password' name='password' value = ''>
 					</label>
+					<div class='error'>{{error_password}}</div>
 					
 					<label>
 						Confirm Password
-						<input type='password' name='verify' value = '{{user_password_confirmation}}' maxlength="50">
+						<input type='password' name='verify' value = '' >
 					</label>
-					<div class='error'>{{params}}</div>
+					<div class='error'>{{error_verify}}</div>
 					
 					<label>
 						Email(optional)
-						<input type='text' name='email' value = '{{user_email}}' maxlength="40">
+						<input type='text' name='email' value = '{{email}}' >
 					</label>
-					<div class='error'>{{params}}</div>
+					<div class='error'>{{error_email}}</div>
 					<input type='submit'>					
 				</form>				
 			</div>

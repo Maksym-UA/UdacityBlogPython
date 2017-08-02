@@ -125,7 +125,7 @@ a:link, a active, a:hover {
 	float: left;
 }
 
-.likebut > button {
+.likebut a > button {
 	margin-right: 3px;
 }
 
@@ -133,7 +133,7 @@ a:link, a active, a:hover {
 .number {
 	display: block;
 	float:right;
-	margin-top: 5px 5px;	
+	margin: 5px 5px;	
 }
 
 .edit-buttons {
@@ -144,7 +144,7 @@ a:link, a active, a:hover {
 }
 
 
-.editbut > button {
+.edit-buttons a > button {
 	margin-left: 3px;
 }
 
@@ -158,8 +158,6 @@ a:link, a active, a:hover {
 	display: block;
 	margin: 10px 35px; 
 	padding: 15px;
-	-webkit-box-shadow:0px 0px 7px 3px #cccccc inset;
-	-moz-box-shadow:0px 0px 7px 3px #cccccc inset;
 	box-shadow:0px 0px 7px 3px #cccccc inset;
 }
 
@@ -192,7 +190,8 @@ a:link, a active, a:hover {
 .editcomment {
 	display: block;
 	float: right;
-	margin-right: 15px;	
+	margin-right: 15px;
+	
 }
 
 

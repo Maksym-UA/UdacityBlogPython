@@ -1,52 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Signup page </title>
-		
-		<link rel="stylesheet" href="/css/bootstrap.min.css"/>
-		<link type="text/css" rel="stylesheet" href="/css/main.css"/>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	</head>
-	
-	<body>
-		<div class="container">
-			<header>
-				<a href="/blog">
-					<h1>MS Blog</h1>
-				</a>
-				<div class="col-xs-12 col-sm-12 col-md-12 navigation">							
-					{% if user %}
-						<form method='post'>
-							<a id='logout' href="/blog/logout">
-								<button type="button" name="logout">Logout</button>
-							</a>
-							
-							<a id='write' href="/blog/newpost">
-								<button type="button" name="newpost">Write post</button>
-							</a>
-							
-							<a href="/blog">
-								<button type="button" name="logout">Home</button>
-							</a>
-						</form>
-					{% endif %}						
-				</div>
-			</header>
-			
-			<div class="row">
-				
-				<div class="col-md-12">
-					<hr>
-				</div>
-			</div>
+{% extends "index.html" %}
 
-			<div class="user">			
-				<h2>Welcome, {{username}}!</h2>				
-			</div>
-		</div>
-		
-		<script src="/js/jquery-3.2.1.min.js"></script>
-		<script src="/js/bootstrap.min.js"></script>
-	</body>
-</html>
+{% block header %}
+    {{ super() }}
+    {% if user %}
+		<form method='post'>			
+			<a id='home' href="/blog">
+				<button type="button" name="logout">Home</button>
+			</a>			
+		</form>
+	{% endif %}		
+{% endblock %}
+
+{% block content %}
+    <div class="user">			
+		<h2>Welcome, {{username}}!</h2>				
+	</div>
+{% endblock %}

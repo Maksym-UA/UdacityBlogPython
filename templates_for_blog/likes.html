@@ -1,0 +1,50 @@
+{% extends "index.html" %}
+
+{% block header %}
+    {{ super() }}
+    {% if user %}
+		<form method='post'>			
+			<a id='home' href="/blog">
+				<button type="button" name="logout">Home</button>
+			</a>			
+		</form>
+	{% endif %}		
+{% endblock %}
+
+{% block content %}
+	<div class="post">						
+		<div class="title">
+			<div class="post-subject">{{post.subject}}</div>
+			<div class="post-created">{{post.created.strftime("%Y-%m-%d %H:%M:%S")}}</div>
+		</div>
+		
+		<div class="post-body">{{post.content}}</div>
+		
+		<div class="row give-likes">							
+			<div class="like-buttons">
+				<form class = 'likebut' method='post' >
+					<a>
+						<button type="submit" name="post_id_to_unlike" value="{{post.key().id()}}" > Unlike</button>
+					</a>
+					
+					<a>
+						<button type="submit" name="post_id_to_like" value="{{post.key().id()}}" > Like</button>
+					</a>
+				</form>
+				
+			</div>
+			
+			<div class="number">
+				{% if post.post_likes == 1 %}
+					<h5>{{post.post_likes}} Like</h5>
+				{% else %}
+					<h5>{{post.post_likes}} Likes</h5>	
+				{% endif %}							
+			</div>						
+		</div>		
+		
+		{% if postid == post.key().id()  %}
+			<div class='error'><h4>{{error}}</h4></div>
+		{% endif %}
+	</div>	
+{% endblock %}
