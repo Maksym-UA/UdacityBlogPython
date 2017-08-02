@@ -60,16 +60,28 @@
 						
 						<div class="row give-likes">							
 							<div class="like-buttons">
-								<form class = 'likebut' method='post' form action="/blog/like/{{post.key().id()}}">
-									<a>
-										<button type="submit" name="post_id_to_unlike" value="{{post.key().id()}}" > Unlike</button>
-									</a>
-									
-									<a>
-										<button type="submit" name="post_id_to_like" value="{{post.key().id()}}"> Like</button>
-									</a>
-								</form>
-								
+								{% if user %}
+									<form class = 'likebut' method='post' form action="/blog/like/{{post.key().id()}}">
+										<a>
+											<button type="submit" name="post_id_to_unlike" value="{{post.key().id()}}" > Unlike</button>
+										</a>
+										
+										<a>
+											<button type="submit" name="post_id_to_like" value="{{post.key().id()}}"> Like</button>
+										</a>
+									</form>								
+								{% else %}								
+									<div class = 'likebut' >
+										<a href="/blog">
+											<button type="submit" name="post_id_to_unlike" value="{{post.key().id()}}" > Unlike</button>
+										</a>
+										
+										<a href="/blog">
+											<button type="submit" name="post_id_to_like" value="{{post.key().id()}}"> Like</button>
+										</a>
+									</div>	
+									<div class='error'><h4>{{logerror}}</h4></div>
+								{% endif %}	
 							</div>
 							
 							<div class="number">

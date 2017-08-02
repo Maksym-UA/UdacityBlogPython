@@ -169,38 +169,31 @@ class LikeHandler(Handler):
         post_to_like = self.request.get('post_id_to_like')
         post_to_unlike = self.request.get('post_id_to_unlike')
 
-        if post_to_like:
-            key = db.Key.from_path('MyBlog', int(post_to_like),
-                                   parent=blog_model.blog_key())
-            post = db.get(key)
-
-            if self.user:
-                username = self.user.name
+        if self.user:
+            username = self.user.name
+            if post_to_like:
+                key = db.Key.from_path('MyBlog', int(post_to_like),
+                                       parent=blog_model.blog_key())
+                post = db.get(key)
                 if (username != post.author.name and username
                         not in post.users_liked):
                         post.users_liked.append(username)
                         post.put()
                         time.sleep(0.1)
                 self.redirect('/blog')
-            else:
-
-                error = 'Login, please!'
-                self.render('likes.html', error=error)
-
-        if post_to_unlike:
-            key = db.Key.from_path('MyBlog', int(post_to_unlike),
-                                   parent=blog_model.blog_key())
-            post = db.get(key)
-
-            if self.user:
+            if post_to_unlike:
+                key = db.Key.from_path('MyBlog', int(post_to_unlike),
+                                       parent=blog_model.blog_key())
+                post = db.get(key)
                 if self.user.name in post.users_liked:
                     post.users_liked.remove(self.user.name)
                     post.put()
                     time.sleep(0.1)
                 self.redirect('/blog')
-            else:
-                error = 'Login, please!'
-                self.render('likes.html', error=error)
+        else:
+            logerror = 'Login, please!'
+            self.render('index.html', error=error)
+            return
 
 
 class PostPage(Handler):
