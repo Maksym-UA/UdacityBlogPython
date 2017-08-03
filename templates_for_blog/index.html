@@ -63,7 +63,7 @@
 								{% if user %}
 									<form class = 'likebut' method='post' form action="/blog/like/{{post.key().id()}}">
 										<a>
-											<button type="submit" name="post_id_to_unlike" value="{{post.key().id()}}" > Unlike</button>
+											<button type="submit" name="post_id_to_dislike" value="{{post.key().id()}}" > Dislike</button>
 										</a>
 										
 										<a>
@@ -71,15 +71,15 @@
 										</a>
 									</form>								
 								{% else %}								
-									<div class = 'likebut' >
-										<a href="/blog">
-											<button type="submit" name="post_id_to_unlike" value="{{post.key().id()}}" > Unlike</button>
+									<form class = 'likebut' method='post'>
+										<a href="#">
+											<button type="submit" name="post_id_to_dislike" value="{{post.key().id()}}" > Dislike</button>
 										</a>
 										
-										<a href="/blog">
+										<a href="#">
 											<button type="submit" name="post_id_to_like" value="{{post.key().id()}}"> Like</button>
 										</a>
-									</div>	
+									</form>
 									<div class='error'><h4>{{logerror}}</h4></div>
 								{% endif %}	
 							</div>

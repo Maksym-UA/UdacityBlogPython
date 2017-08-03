@@ -39,6 +39,8 @@ from functools import wraps
 
 from models import comments_model, blog_model, user_model
 
+import globalf
+
 # show path where templates are stored
 
 template_dir = os.path.join(os.path.dirname(__file__),
@@ -139,15 +141,26 @@ class FrontPage(Handler):
                 key = db.Key.from_path('MyBlog', int(post_to_delete),
                                        parent=blog_model.blog_key())
                 post = db.get(key)
-                post.delete()
-                self.redirect('/blog')
+                if post and self.user.name == post.author.name:
+                    post.delete()
+                    self.redirect('/blog')
+                    return
+                else:
+                    self.error(404)
+                    return
 
             if comment_id_to_delete:
                 key = db.Key.from_path('Comment',
                                        int(comment_id_to_delete),
                                        parent=comments_model.comment_key())
                 comment = db.get(key)
-                comment.delete()
+                if comment and self.user.name == comment.comment_author:
+                    comment.delete()
+                    self.redirect('/blog')
+                    return
+                else:
+                    self.error(404)
+                    return
         else:
             self.redirect('/blog/login')
             return
@@ -167,14 +180,16 @@ class LikeHandler(Handler):
 
     def post(self, post_id):
         post_to_like = self.request.get('post_id_to_like')
-        post_to_unlike = self.request.get('post_id_to_unlike')
+        post_to_unlike = self.request.get('post_id_to_dislike')
 
-        if self.user:
+        key = db.Key.from_path('MyBlog', int(post_id),
+                               parent=blog_model.blog_key())
+        post = db.get(key)
+
+        if self.user and post:
             username = self.user.name
             if post_to_like:
-                key = db.Key.from_path('MyBlog', int(post_to_like),
-                                       parent=blog_model.blog_key())
-                post = db.get(key)
+
                 if (username != post.author.name and username
                         not in post.users_liked):
                         post.users_liked.append(username)
@@ -182,9 +197,6 @@ class LikeHandler(Handler):
                         time.sleep(0.1)
                 self.redirect('/blog')
             if post_to_unlike:
-                key = db.Key.from_path('MyBlog', int(post_to_unlike),
-                                       parent=blog_model.blog_key())
-                post = db.get(key)
                 if self.user.name in post.users_liked:
                     post.users_liked.remove(self.user.name)
                     post.put()
@@ -221,6 +233,19 @@ class NewPost(Handler):
     Class to create new post entities.
     '''
 
+    def login_required(func):
+        """
+        A decorator to confirm a user is logged in or redirect as needed.
+        """
+        def login(self, *args, **kwargs):
+            # Redirect to login if user not logged in, else execute func.
+            if not self.user:
+                self.redirect('/blog/login')
+            else:
+                func(self, *args, **kwargs)
+        return login
+
+    @login_required
     def get(self):
         if self.user:
             self.render('newpost.html')
@@ -294,9 +319,10 @@ class EditPost(Handler):
             subject = self.request.get('subject')
             content = self.request.get('content')
             if content:
-                post.content = content
-                post.put()  # store edited object in the database
-                self.redirect('/blog')
+                if self.user.name == post.author.name:
+                    post.content = content
+                    post.put()  # store edited object in the database
+                    self.redirect('/blog')
             else:
                 error = 'Content, please!'
                 self.render('editpost.html', content=content,
@@ -378,6 +404,7 @@ class EditComment(Handler):
             self.redirect('/blog/login')
             return
 
+    @comment_valid
     def post(self, comment_id_to_edit):
         comment = comments_model.Comment.by_id(int(comment_id_to_edit))
         content = self.request.get('comment_text')
@@ -395,33 +422,6 @@ class EditComment(Handler):
                 error = 'Content, please!'
                 self.render('editcomment.html', content=content,
                             error=error)
-
-
-# verify username is of proper form
-
-USER_RE = re.compile(r'^[a-zA-Z0-9_-]{3,20}$')
-
-
-def valid_username(username):
-    return username and USER_RE.match(username)
-
-
-# verify password is of proper form
-
-PASS_RE = re.compile(r'^.{3,20}$')
-
-
-def valid_password(password):
-    return password and PASS_RE.match(password)
-
-
-# verify email is of proper form
-
-EMAIL_RE = re.compile(r'^[\S]+@[\S]+\.[\S]+$')
-
-
-def valid_email(email):
-    return not email or EMAIL_RE.match(email)
 
 
 class Signup(Handler):
@@ -442,18 +442,18 @@ class Signup(Handler):
 
         params = dict(username=self.username, email=self.email)
 
-        if not valid_username(self.username):
+        if not globalf.valid_username(self.username):
             params['error_username'] = "That's not a valid username."
             have_error = True
 
-        if not valid_password(self.password):
+        if not globalf.valid_password(self.password):
             params['error_password'] = "That wasn't a valid password."
             have_error = True
         elif self.password != self.verify:
             params['error_verify'] = "Your passwords didn't match."
             have_error = True
 
-        if not valid_email(self.email):
+        if not globalf.valid_email(self.email):
             params['error_email'] = "That's not a valid email."
             have_error = True
 
